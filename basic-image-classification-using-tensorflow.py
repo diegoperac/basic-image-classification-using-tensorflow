@@ -99,4 +99,4 @@ if pred != gt:
 
   plt.xlabel('i={}, pred={}, gt={}'.format(start_index+i, pred, gt))
   plt.imshow(x_test[start_index+i], cmap='binary')
-  plt.show()
+plt.show()
