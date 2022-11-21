@@ -48,3 +48,22 @@ epsilon = 1e-10
 x_train_norm = (x_train_reshaped - x_mean) / (x_std + epsilon)
 x_test_norm = (x_test_reshaped - x_mean) / (x_std + epsilon)
 
+# Creating a Model
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+model = Sequential ([
+    Dense(128, activation='relu', input_shape=(784,)),
+    Dense(128, activation='relu'),
+    Dense(10, activation='softmax')
+    
+# Compiling the Model
+
+model.compile(
+    optimizer='sgd',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+model.summary()
