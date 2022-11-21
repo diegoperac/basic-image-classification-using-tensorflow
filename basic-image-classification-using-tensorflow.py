@@ -67,3 +67,36 @@ model.compile(
 )
 
 model.summary()
+
+# Training the Model
+
+model.fit(x_train_norm, y_train_encoded, epochs=3)
+    
+# Predictions 
+
+preds = model.predict(x_test_norm)
+print('Shape of preds:', preds.shape)
+    
+# Plotting the Results
+
+from matplotlib import pyplot as plt
+plt.figure(figsize=(12,12))
+
+start_index=0
+
+for i in range(25):
+  plt.subplot(5,5,i+1)
+  plt.grid(False)
+  plt.xticks([])
+  plt.yticks([])
+
+pred = np.argmax(preds[start_index+i])
+gt = y_test[start_index+i]
+
+col = 'g'
+if pred != gt:
+  col = 'r'
+
+  plt.xlabel('i={}, pred={}, gt={}'.format(start_index+i, pred, gt))
+  plt.imshow(x_test[start_index+i], cmap='binary')
+  plt.show()
